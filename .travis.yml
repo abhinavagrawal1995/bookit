@@ -13,13 +13,12 @@ cache:
     - node_modules
     
 install:
-  - npm install -g yarn
   - npm install -g @angular/cli
 
 script:
   - ng build --prod
 
-  deploy:
+deploy:
   provider: pages
   skip_cleanup: true
   github_token: 3cdeb9c033a5ddc4176c2163566d3cbbcd9c158a
