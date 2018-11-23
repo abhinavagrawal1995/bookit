@@ -21,7 +21,7 @@ script:
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN
+  gh-token: $GITHUB_TOKEN
   local_dir: dist/bookit
   on:
     branch: master
