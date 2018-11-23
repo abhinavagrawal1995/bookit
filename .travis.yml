@@ -1,18 +1,26 @@
 language: node_js
 node_js:
-  - "6.9"
+  - "9"
+dist: trusty
+sudo: false
 
 branches:
   only:
-    - master
+  - master
 
-before_script:
-  - npm install -g @angular/cli
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm install -g yarn
 
 script:
-  - ng build --prod
-
-notifications:
-  email:
-    on_failure: change
-    on_success: change
+  - yarn build --base-href https://abhinavagrawal.in/bookit/
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: 3cdeb9c033a5ddc4176c2163566d3cbbcd9c158a
+  local_dir: dist/bookit
+  on:
+    branch: master
