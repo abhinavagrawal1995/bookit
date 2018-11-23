@@ -13,7 +13,6 @@ cache:
     - node_modules
     
 install:
-  - npm install -g @angular/cli
   - npm install
 
 script:
@@ -22,7 +21,7 @@ script:
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: c3942386d66c5296fe8525e607b4badd9d62a6aa
+  github_token: 406b82e68b252f17341b744f1bd7e7d44e826396
   local_dir: dist/bookit
   on:
     branch: master
