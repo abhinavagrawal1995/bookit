@@ -11,13 +11,15 @@ branches:
 cache:
   directories:
     - node_modules
-
+    
 install:
   - npm install -g yarn
+  - npm install -g @angular/cli
 
 script:
-  - yarn build --base-href https://abhinavagrawal.in/bookit/
-deploy:
+  - ng build --prod
+
+  deploy:
   provider: pages
   skip_cleanup: true
   github_token: 3cdeb9c033a5ddc4176c2163566d3cbbcd9c158a
