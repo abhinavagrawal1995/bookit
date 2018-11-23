@@ -22,7 +22,7 @@ script:
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: 3cdeb9c033a5ddc4176c2163566d3cbbcd9c158a
+  github_token: c3942386d66c5296fe8525e607b4badd9d62a6aa
   local_dir: dist/bookit
   on:
     branch: master
