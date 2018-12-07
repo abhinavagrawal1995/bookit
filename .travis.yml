@@ -16,7 +16,7 @@ install:
   - npm install
 
 script:
-  - ng build --prod --base-href http://abhinavagrawal.in/cs5200-final-project/
+  - ng build --prod --base-href http://abhinavagrawal.in/bookit/
 
 deploy:
   provider: pages
