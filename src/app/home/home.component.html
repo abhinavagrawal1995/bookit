@@ -1,9 +1,45 @@
-<p *ngIf="user && user.role!=='guest'">
-  Welcome, {{user.firstName}}.
-</p>
-<p *ngIf="!user || user.role==='guest'">
-  <a [routerLink]="['/login']">Log In</a> to access more features.
-</p>
-<!-- <app-browse *ngIf="userService.getUser().role==='guest'||userService.getUser().role==='user'"></app-browse>
-<app-admin *ngIf="userService.getUser().role==='admin'"></app-admin>
-<app-vendor *ngIf="userService.getUser().role==='vendor'"></app-vendor> -->
+<div class="home">
+  <aside class="profile-card">
+    <header>
+      <a target="_blank" href="#">
+      </a>
+
+      <h1>
+        Hello, {{userService.getUser().firstName}}
+      </h1>
+
+      <h2>
+        Welcome to BookIt.
+      </h2>
+
+    </header>
+
+    <div class="profile-bio">
+
+      <p>
+        Browsing, booking and attending movies at the tap of a finger.
+        <br>
+        Skip the hassle. Make movies fun again!
+      </p>
+      <br>
+
+      <p *ngIf="userService.getUser().role === 'admin'">
+        As an admin, you can manage movies and users.
+      </p>
+
+      <p *ngIf="userService.getUser().role === 'guest'">
+        As a guest, you can browse movies.
+      </p>
+      <p *ngIf="userService.getUser().role === 'vendor'">
+        As a vendor, you can add your shows to movies.
+      </p>
+
+      <p *ngIf="userService.getUser().role === 'user'">
+        As a user, you can browse, book and attend movies.
+      </p>
+
+    </div>
+
+
+  </aside>
+</div>
