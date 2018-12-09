@@ -32,6 +32,10 @@ export class MovieComponent implements OnInit {
   }
 
   book(show: Show) {
+    if (this.seats < 1) {
+      this.messageService.add({ severity: 'error', summary: 'Please select at least 1 seat.' });
+      return;
+    }
     this.movieService.book(show, this.userService.getUser(), this.seats).subscribe(res => {
       if (res) {
         this.messageService.add({ severity: 'success', summary: 'Booking Successful' });

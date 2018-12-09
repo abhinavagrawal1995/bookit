@@ -18,7 +18,7 @@ export class MovieService {
   constructor(public http: Http) { }
 
   summaryUrl = environment.url + '/movie/summary';
-  allBookingsUrl = environment.url + '/booking/all';
+  allBookingsByUserUrl = environment.url + '/booking/user';
   allShowsByMovie = environment.url + '/show/movie';
   allShowsByVendorUrl = environment.url + '/show/vendor';
   descrptionUrl = 'http://www.omdbapi.com/?apikey=adc8cbae&i=';
@@ -27,6 +27,8 @@ export class MovieService {
   createShowUrl = environment.url + '/show/add';
   deleteMovieUrl = environment.url + '/movie/remove';
   deleteShowUrl = environment.url + '/show/remove';
+  bookingInfoUrl = environment.url + '/booking/find';
+  bookingSummaryUrl = environment.url + '/booking/summary';
 
   movieMap: Map<String, MovieDescription> = new Map();
 
@@ -60,11 +62,26 @@ export class MovieService {
 
 
   getBookings(user: User): Observable<Array<Booking>> {
-    return this.http.get(this.allBookingsUrl, { params: { user: user } })
+    return this.http.get(this.allBookingsByUserUrl, { params: user })
       .pipe(map(res =>
         res.json()
       ));
   }
+
+  getBookingInfo(booking: Booking): Observable<Booking> {
+    return this.http.get(this.bookingInfoUrl, { params: booking })
+      .pipe(map(res =>
+        res.json()
+      ));
+  }
+
+  getBookingSummary(bookingId: String): Observable<Booking> {
+    return this.http.get(this.bookingSummaryUrl, { params: { bookingId: bookingId } })
+      .pipe(map(res =>
+        res.json()
+      ));
+  }
+
 
   book(show: Show, user: User, seats) {
     return this.http.post(this.createBookingUrl, { user: user, show: show, seats: seats }).pipe(
@@ -87,7 +104,7 @@ export class MovieService {
   }
 
   getAllShowsForVendor(user: User) {
-    return this.http.get(this.allShowsByVendorUrl, { params:  user })
+    return this.http.get(this.allShowsByVendorUrl, { params: user })
       .pipe(map(res =>
         res.json()
       ));

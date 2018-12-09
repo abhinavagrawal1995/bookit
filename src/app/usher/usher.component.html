@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    Enter Booking ID to search -
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-label-group">
+        <input type="text" class="form-control" placeholder="Booking ID" required autofocus name="username" [(ngModel)]="searchStr">
+        <label>Booking ID</label>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <button type="button" class="btn btn-primary" (click)="search()" style="width:50%;float:right">Search</button>
+    </div>
+  </div>
+</div>
+<hr />
+<app-booking [booking]="booking" *ngIf="booking"></app-booking>

@@ -1,0 +1,22 @@
+<div class="movie" *ngIf="movie">
+  <div class="movie__image"><img src="{{movie.Poster}}" /></div>
+  <div class=" movie__details">
+    <h2 class="movie__title">{{movie.Title}}</h2>
+    <div class="movie__details_container">
+      <p>Date: {{bookingInfo.show.date}}</p>
+    </div>
+    <div class="movie__details_container">
+      <p>Time: {{bookingInfo.show.time}}</p>
+    </div>
+    <div class="movie__details_container">
+      <p>Seats: {{bookingInfo.seats}}</p>
+    </div>
+    <div class="movie__details_container">
+      <p>Booked By: {{bookingInfo.user.firstName}} {{bookingInfo.user.lastName}}</p>
+    </div>
+    <div class="movie__details_container">
+      <p>Booking ID: {{bookingInfo._id}}</p>
+      <p>(Show this code to the usher to gain entry)</p>
+    </div>
+  </div>
+</div>

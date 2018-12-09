@@ -1,24 +1,10 @@
-<h4>Currently showing</h4>
-<p-dataView [value]="movies" [sortField]="sortField" [sortOrder]="sortOrder" *ngIf="isReady">
-  <p-header>
-    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)"
-      [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
-  </p-header>
-  <ng-template let-movie pTemplate="listItem">
-    <a [routerLink]="['/movie/',{imdbID:movie.imdbID}]">
-      <div class="movie">
-        <div class="movie__image"><img src="{{movie.Poster}}" /></div>
-        <div class=" movie__details">
-          <h2 class="movie__title">{{movie.Title}}</h2>
-          <div class="movie__details_container">
-            <p class="movie__year">{{movie.Year}}</p>
-            <p class="movie__rating">{{movie.imdbRating}} &#10022;</p>
-          </div>
-          <p class="movie__description">
-            {{movie.Plot}}
-          </p>
-        </div>
+<h4>Your Bookings</h4>
+<p-dataView [value]="bookings" *ngIf="bookings">
+  <ng-template let-booking pTemplate="listItem">
+    <div class="movie">
+      <div>
+        <app-booking [booking]="booking"></app-booking>
       </div>
-    </a>
+    </div>
   </ng-template>
 </p-dataView>

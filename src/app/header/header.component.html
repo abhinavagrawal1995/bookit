@@ -15,6 +15,7 @@
           <li *ngIf="userService.getUser().role==='admin'"> <a [routerLink]="['/admin/users']">Manage Users</a></li>
           <li *ngIf="userService.getUser().role==='admin'"> <a [routerLink]="['/admin/movies']">Add Movie</a></li>
           <li *ngIf="userService.getUser().role==='vendor'"> <a [routerLink]="['/vendor']">My Shows</a></li>
+          <li *ngIf="userService.getUser().role==='usher'"> <a [routerLink]="['/usher']">Verify Booking</a></li>
           <li> <a [routerLink]="['/profile']">Profile</a></li>
           <li> <a (click)="userService.logout()">Logout</a></li>
         </ng-container>

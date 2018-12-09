@@ -29,6 +29,8 @@ import { AdminMovieDashboardComponent } from './admin-movie-dashboard/admin-movi
 import { AdminUsersDashboardComponent } from './admin-users-dashboard/admin-users-dashboard.component';
 import {ButtonModule} from 'primeng/button';
 import { MovieDescriptionComponent } from './movie-description/movie-description.component';
+import { BookingComponent } from './booking/booking.component';
+import { UsherComponent } from './usher/usher.component';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -36,6 +38,7 @@ const appRoutes: Routes = [
   { path: 'admin/users', component: AdminUsersDashboardComponent },
   { path: 'admin/movies', component: AdminMovieDashboardComponent },
   { path: 'vendor', component: VendorComponent },
+  { path: 'usher', component: UsherComponent },
   { path: 'browse', component: BrowseComponent },
   { path: 'bookings', component: BookingsComponent },
   { path: 'profile', component: ProfileComponent },
@@ -58,7 +61,9 @@ const appRoutes: Routes = [
     BookingsComponent,
     AdminMovieDashboardComponent,
     AdminUsersDashboardComponent,
-    MovieDescriptionComponent
+    MovieDescriptionComponent,
+    BookingComponent,
+    UsherComponent
   ],
   imports: [
     BrowserModule,
