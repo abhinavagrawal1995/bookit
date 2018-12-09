@@ -16,7 +16,7 @@ install:
   - npm install
 
 script:
-  - ng build --prod --base-href https://abhinavagrawal.in/bookit/"
+  - ng build --prod --base-href https://abhinavagrawal.in/bookit/
 
 deploy:
   provider: pages
