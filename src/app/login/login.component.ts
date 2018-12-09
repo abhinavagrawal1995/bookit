@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,9 @@ export class LoginComponent implements OnInit {
   username = '';
   password = '';
 
-  constructor(public userService: UserService, public router: Router) { }
+  message = '';
+
+  constructor(public userService: UserService, public router: Router, public messageService: MessageService) { }
 
   ngOnInit() {
   }
@@ -29,9 +32,11 @@ export class LoginComponent implements OnInit {
     this.userService.login(userInfo).subscribe(res => {
       if (res) {
         this.router.navigate(['/home']);
-      } else {
-        console.log('Invalid');
       }
-    });
+    },
+      err => {
+        this.messageService.add({ severity: 'error', summary: err._body });
+      }
+    );
   }
 }

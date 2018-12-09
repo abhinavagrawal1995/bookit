@@ -1,3 +1,9 @@
-<p>
-  home works!
+<p *ngIf="user && user.role!=='guest'">
+  Welcome, {{user.firstName}}.
 </p>
+<p *ngIf="!user || user.role==='guest'">
+  <a [routerLink]="['/login']">Log In</a> to access more features.
+</p>
+<!-- <app-browse *ngIf="userService.getUser().role==='guest'||userService.getUser().role==='user'"></app-browse>
+<app-admin *ngIf="userService.getUser().role==='admin'"></app-admin>
+<app-vendor *ngIf="userService.getUser().role==='vendor'"></app-vendor> -->

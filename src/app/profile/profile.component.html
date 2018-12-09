@@ -1,0 +1,38 @@
+<div class="container" *ngIf="user">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h5 class="card-title text-center">My Profile</h5>
+          <form class="form-signin">
+            <div class="form-label-group">
+              <input type="text" class="form-control" autofocus name="firstName" [(ngModel)]="user.firstName">
+              <label *ngIf="!user.firstName" for="firstName">First Name</label>
+            </div>
+            <div class="form-label-group">
+              <input type="text" class="form-control" name="lastName" [(ngModel)]="user.lastName">
+              <label *ngIf="!user.lastName" for="lastName">Last Name</label>
+            </div>
+
+            <div class="form-label-group">
+              <input type="text" class="form-control" name="phone" [(ngModel)]="user.phone">
+              <label *ngIf="!user.phone" for="phone">Phone No.</label>
+            </div>
+
+            <div class="form-label-group" *ngIf="user.role==='vendor'">
+              <input type="text" class="form-control" name="theatreName" [(ngModel)]="user.vendor.theatreName">
+              <label *ngIf="!user.theatreName" for="theatreName">Theater Name</label>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" (click)="update()">Update
+              Details</button>
+          </form>
+          <hr />
+          <div>
+            {{message}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

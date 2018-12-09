@@ -20,7 +20,16 @@
             </div>
 
             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" (click)="login()">Login</button>
+
           </form>
+          <hr>
+          
+          <div>
+            {{message}}
+          </div>
+          <div>
+            <a [routerLink]="['/register']">New User?</a>
+          </div>
         </div>
       </div>
     </div>

@@ -1,15 +1,23 @@
 <div class="header-container">
   <div class="left">
     <span>
-      Book It!
+      <a [routerLink]="['/home']">
+        Book It!
+      </a>
     </span>
   </div>
   <div class="right">
     <div class="nav">
       <ul>
-        <li>Your</li>
-        <li>Nav</li>
-        <li>Here</li>
+        <li *ngIf="userService.getUser().role==='user' || userService.getUser().role==='guest'"> <a [routerLink]="['/browse']">Browse</a></li>
+        <ng-container *ngIf="userService.isLoggedIn()">
+          <li *ngIf="userService.getUser().role==='user'"> <a [routerLink]="['/bookings']">Bookings</a></li>
+          <li *ngIf="userService.getUser().role==='admin'"> <a [routerLink]="['/admin/users']">Users</a></li>
+          <li *ngIf="userService.getUser().role==='admin'"> <a [routerLink]="['/admin/movies']">Movies</a></li>
+          <li *ngIf="userService.getUser().role==='vendor'"> <a [routerLink]="['/vendor']">Vendor Dashboard</a></li>
+          <li> <a [routerLink]="['/profile']">Profile</a></li>
+          <li> <a (click)="userService.logout()">Logout</a></li>
+        </ng-container>
       </ul>
     </div>
   </div>

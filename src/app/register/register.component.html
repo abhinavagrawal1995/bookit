@@ -5,17 +5,24 @@
         <div class="card-body">
           <h5 class="card-title text-center">Register</h5>
           <form class="form-signin">
-            <div class="form-label-group">
 
-              <input type="text" class="form-control" placeholder="First Name" required autofocus name="username"
+            <div class="form-label-group">
+              <input type="text" class="form-control" placeholder="First Name" required autofocus name="firstName"
                 [(ngModel)]="firstName">
               <label>First Name</label>
             </div>
             <div class="form-label-group">
-              <input type="text" class="form-control" placeholder="Last Name" required autofocus name="username"
+              <input type="text" class="form-control" placeholder="Last Name" required autofocus name="lastName"
                 [(ngModel)]="lastName">
               <label>Last Name</label>
             </div>
+
+            
+            <div class="form-label-group">
+                <input type="number" class="form-control" placeholder="Phone Number" required autofocus name="phone"
+                  [(ngModel)]="phone">
+                <label>Phone Number</label>
+              </div>
 
             <div class="form-label-group">
               <input type="text" class="form-control" placeholder="Username" required autofocus name="username"
@@ -24,13 +31,16 @@
             </div>
 
             <div class="form-label-group">
-              <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password"
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password"
                 required [(ngModel)]="password">
               <label>Password</label>
             </div>
 
             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" (click)="register()">Register</button>
-          </form>
+          </form> <hr>
+          <div>
+            <a [routerLink]="['/login']">Returning User?</a>
+          </div>
         </div>
       </div>
     </div>

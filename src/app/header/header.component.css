@@ -43,3 +43,13 @@
 .nav li:hover {
   border-bottom: 1px solid black;
 }
+
+a{
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+}
+
+a:hover{
+  color: black;
+}

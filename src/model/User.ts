@@ -1,8 +1,10 @@
-export class User {
-    id: Number;
-    username: String;
-    password: String;
-    first_name: String;
-    last_name: String;
-    role: String;
+import { Vendor } from './Vendor';
+
+export interface User {
+    username?: String;
+    password?: String;
+    firstName?: String;
+    lastName?: String;
+    role?: String;
+    vendor?: Vendor;
 }
