@@ -1,8 +1,7 @@
 <h3>Manage all shows</h3>
 <hr />
 
-<p-table [columns]="cols" [value]="shows" selectionMode="single" [(selection)]="selectedShow" (onRowSelect)="onRowSelect($event)"
-  [paginator]="true" [rows]="15" #dt>
+<p-table [columns]="cols" [value]="shows" [paginator]="true" [rows]="15" #dt>
   <ng-template pTemplate="caption">
     List of Shows
   </ng-template>
