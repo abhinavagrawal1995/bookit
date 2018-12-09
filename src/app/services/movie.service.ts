@@ -19,9 +19,15 @@ export class MovieService {
 
   summaryUrl = environment.url + '/movie/summary';
   allBookingsUrl = environment.url + '/booking/all';
-  findShowUrl = environment.url + '/show/find';
+  allShowsByMovie = environment.url + '/show/movie';
+  allShowsByVendorUrl = environment.url + '/show/vendor';
   descrptionUrl = 'http://www.omdbapi.com/?apikey=adc8cbae&i=';
   createBookingUrl = environment.url + '/booking/create';
+  createMovieUrl = environment.url + '/movie/add';
+  createShowUrl = environment.url + '/show/add';
+  deleteMovieUrl = environment.url + '/movie/remove';
+  deleteShowUrl = environment.url + '/show/remove';
+
   movieMap: Map<String, MovieDescription> = new Map();
 
   getSummaryList(): Observable<Array<Movie>> {
@@ -45,8 +51,8 @@ export class MovieService {
     }
     return obv;
   }
-  getShows(movieId: String): Observable<Array<Show>> {
-    return this.http.get(this.findShowUrl, { params: { imdbID: movieId } })
+  getShowsByMovie(movieId: String): Observable<Array<Show>> {
+    return this.http.get(this.allShowsByMovie, { params: { imdbID: movieId } })
       .pipe(map(res =>
         res.json()
       ));
@@ -66,4 +72,36 @@ export class MovieService {
         , err => false)
     );
   }
+
+  addMovie(movie: Movie) {
+    return this.http.post(this.createMovieUrl, movie).pipe(
+      map(res => true
+        , err => false)
+    );
+  }
+  removeMovie(movie: Movie) {
+    return this.http.post(this.deleteMovieUrl, movie).pipe(
+      map(res => true
+        , err => false)
+    );
+  }
+
+  getAllShowsForVendor(user: User) {
+    return this.http.get(this.allShowsByVendorUrl, { params:  user })
+      .pipe(map(res =>
+        res.json()
+      ));
+  }
+
+  addShow(show: Show, user: User) {
+    return this.http.post(this.createShowUrl, { person: user, show: show })
+      .pipe(map(res => true
+        , err => false));
+  }
+  deleteShow(show: Show) {
+    return this.http.post(this.deleteShowUrl, show)
+      .pipe(map(res => true
+        , err => false));
+  }
+
 }

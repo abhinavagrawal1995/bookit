@@ -1,41 +1,10 @@
-<div class="movie" *ngIf="movie">
-  <div class="movie__image"><img src="{{movie.Poster}}" /></div>
-  <div class=" movie__details">
-    <h2 class="movie__title">{{movie.Title}}</h2>
-    <div class="movie__details_container">
-      <p class="movie__year">{{movie.Year}}</p>
-      <p class="movie__rating">{{movie.imdbRating}} &#10022;</p>
-    </div>
-    <div class="movie__details_container">
-      Genre: <p>{{movie.Genre}}</p>
-    </div>
+<app-movie-description [movieId]="movieId"></app-movie-description>
 
-    <div class="movie__details_container">
-      Cast: <p>{{movie.Actors}}</p>
-    </div>
-
-    <div class="movie__details_container">
-      Written by: <p>{{movie.Writer}}</p>
-    </div>
-    <p class="movie__description">
-      {{movie.Plot}}
-    </p>
-  </div>
-</div>
-
-<ng-container *ngIf="userService.getUser().role==='user'">
+<ng-container *ngIf="userService.getUser().role==='user' && shows">
   <h4>Shows Available</h4>
   <p-table [value]="shows" #dt>
     <ng-template pTemplate="header">
       <tr>
-        <th>
-          Theatre
-          <div>
-            <input pInputText type="text" (input)="dt.filter($event.target.value, 'theatreName', 'contains')" />
-            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-          </div>
-
-        </th>
         <th [pSortableColumn]="'date'">
           Date
           <p-sortIcon [field]="'date'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order"
@@ -70,17 +39,16 @@
     </ng-template>
     <ng-template pTemplate="body" let-show>
       <tr>
-        <td>{{show.theatreName}}</td>
         <td>{{show.date}}</td>
         <td>{{show.time}}</td>
         <td>{{show.price}}</td>
         <td>
-          <button type="button" class="btn btn-primary" (click)="book(show)" style="width:50%;float:right">Book</button>
+          <button type="button" class="btn btn-primary" (click)="book(show)" style="width:50%">Book</button>
         </td>
       </tr>
     </ng-template>
   </p-table>
 </ng-container>
-<ng-container *ngIf="userService.getUser().role!=='user'">
-  <a [routerLink]="['/login']" *ngIf="userService.getUser().role==='guest'">Log In</a> to view and book shows.
-</ng-container>
+<div *ngIf="userService.getUser().role==='guest'">
+  <a [routerLink]="['/login']">Log In</a> to view and book shows.
+</div>

@@ -9,15 +9,16 @@
   <div class="right">
     <div class="nav">
       <ul>
-        <li *ngIf="userService.getUser().role==='user' || userService.getUser().role==='guest'"> <a [routerLink]="['/browse']">Browse</a></li>
+        <li> <a [routerLink]="['/browse']">Browse Movies</a></li>
         <ng-container *ngIf="userService.isLoggedIn()">
           <li *ngIf="userService.getUser().role==='user'"> <a [routerLink]="['/bookings']">Bookings</a></li>
-          <li *ngIf="userService.getUser().role==='admin'"> <a [routerLink]="['/admin/users']">Users</a></li>
-          <li *ngIf="userService.getUser().role==='admin'"> <a [routerLink]="['/admin/movies']">Movies</a></li>
-          <li *ngIf="userService.getUser().role==='vendor'"> <a [routerLink]="['/vendor']">Vendor Dashboard</a></li>
+          <li *ngIf="userService.getUser().role==='admin'"> <a [routerLink]="['/admin/users']">Manage Users</a></li>
+          <li *ngIf="userService.getUser().role==='admin'"> <a [routerLink]="['/admin/movies']">Add Movie</a></li>
+          <li *ngIf="userService.getUser().role==='vendor'"> <a [routerLink]="['/vendor']">My Shows</a></li>
           <li> <a [routerLink]="['/profile']">Profile</a></li>
           <li> <a (click)="userService.logout()">Logout</a></li>
         </ng-container>
+        <li *ngIf="!userService.isLoggedIn()"> <a [routerLink]="['/login']">Login</a></li>
       </ul>
     </div>
   </div>

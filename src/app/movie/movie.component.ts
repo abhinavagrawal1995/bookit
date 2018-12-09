@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../services/movie.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MovieDescription } from 'src/model/MovieDescription';
 import { Show } from 'src/model/Show';
 import { UserService } from '../services/user.service';
 import { MessageService } from 'primeng/api';
@@ -14,49 +13,20 @@ import { MessageService } from 'primeng/api';
 export class MovieComponent implements OnInit {
 
   seats = 0;
+  movieId: String;
 
-  movie: MovieDescription = {
-    Actors: 'Christian Bale, Michael Caine, Liam Neeson, Katie Holmes',
-    Genre: 'Action, Adventure, Thriller',
-    Plot: 'After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from corruption.',
-    Poster: 'https://m.media-amazon.com/images/M/MV5BZmUwNGU2ZmItMmRiNC00MjhlLTg5YWUtODMyNzkxODYzMmZlXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg',
-    Title: 'Batman Begins',
-    Writer: 'Bob Kane (characters), David S. Goyer (story), Christopher Nolan (screenplay), David S. Goyer (screenplay)',
-    Year: '2005',
-    imdbID: 'tt0372784',
-    imdbRating: '8.3',
-  };
-  shows: Array<Show> = [{
-    imdbID: 'tt0372784',
-    theatreName: 'Regal',
-    date: '27/05',
-    time: '12:30',
-    price: '9.99',
-    id: 'asdasdsad'
-  }, {
-    imdbID: 'tt0372784',
-    theatreName: 'IMAX',
-    date: '27/05',
-    time: '12:30',
-    price: '19.99',
-    id: 'asdasdsad'
-  }];
+  shows: Array<Show>;
   constructor(public movieService: MovieService, public userService: UserService, private route: ActivatedRoute,
     public router: Router, public messageService: MessageService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const movieId = params['imdbID'];
-      // this.movieService.getDescription(movieId).subscribe(
-      //   movie => {
-      //     this.movie = movie;
-      //   }
-      // );
-      // this.movieService.getShows(movieId).subscribe(
-      //   shows => {
-      //     this.shows = shows;
-      //   }
-      // );
+      this.movieId = params['imdbID'];
+      this.movieService.getShowsByMovie(this.movieId).subscribe(
+        shows => {
+          this.shows = shows;
+        }
+      );
     });
 
   }

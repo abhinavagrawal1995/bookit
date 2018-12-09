@@ -25,7 +25,7 @@ export class UserService {
   });
 
   isLoggedIn() {
-    if (this.getUser() == null) {
+    if (this.getUser().role === 'guest') {
       return false;
     }
     return true;
@@ -86,7 +86,7 @@ export class UserService {
   }
 
   logout() {
-    this.cookieService.delete('user');
     this.router.navigate(['/login']);
+    this.cookieService.delete('user');
   }
 }

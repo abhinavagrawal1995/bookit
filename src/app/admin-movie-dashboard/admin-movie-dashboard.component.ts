@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-admin-movie-dashboard',
@@ -8,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class AdminMovieDashboardComponent implements OnInit {
 
   constructor() { }
+  movieId: String;
+  searchStr: String;
 
   ngOnInit() {
+
+  }
+
+  search() {
+    this.movieId = this.searchStr;
   }
 
 }

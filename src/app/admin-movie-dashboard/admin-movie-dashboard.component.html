@@ -1,3 +1,19 @@
-<p>
-  admin-movie-dashboard works!
-</p>
+<div class="container">
+  <div class="row">
+    Enter OMDB ID to search -
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-label-group">
+        <input type="text" class="form-control" placeholder="OMDB ID" required autofocus name="username" [(ngModel)]="searchStr">
+        <label>OMDB ID</label>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <button type="button" class="btn btn-primary" (click)="search()" style="width:50%;float:right">Search</button>
+    </div>
+  </div>
+</div>
+<hr />
+<app-movie-description [movieId]="movieId"></app-movie-description>

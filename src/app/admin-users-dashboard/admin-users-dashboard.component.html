@@ -1,80 +1,84 @@
 <h3>Manage all users</h3>
-<hr/>
+<hr />
 
-<p-table [columns]="cols" [value]="users" selectionMode="single" [(selection)]="selectedUser" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
-    <ng-template pTemplate="caption">
-        List of Users
-    </ng-template>
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                {{col.header}}
-                <p-sortIcon [field]="col.field"></p-sortIcon>
-            </th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr [pSelectableRow]="rowData">
-            <td *ngFor="let col of columns">
-                {{rowData[col.field]}}
-            </td>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="summary" let-rowData>
-        <div style="text-align:left">
-            <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
-        </div>
-    </ng-template>    
+<p-table [columns]="cols" [value]="users" selectionMode="single" [(selection)]="selectedUser" (onRowSelect)="onRowSelect($event)"
+  [paginator]="true" [rows]="15" #dt>
+  <ng-template pTemplate="caption">
+    List of Users
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+          {{col.header}}
+          <input pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <!-- <p-sortIcon [field]="col.field"></p-sortIcon> -->
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pSelectableRow]="rowData">
+      <td *ngFor="let col of columns">
+        {{rowData[col.field]}}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary" let-rowData>
+    <div style="text-align:left">
+      <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
+    </div>
+  </ng-template>
 </p-table>
 
-<p-dialog header="User Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="false" [width]="300">
-    <div class="ui-g ui-fluid" *ngIf="user">
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="firstName">First Name</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="firstName" [(ngModel)]="user.firstName" />
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="lastName">Last Name</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="lastName" [(ngModel)]="user.lastName" />
-            </div>
-        </div>
-        <div class="ui-g-12" *ngIf="newUser">
-            <div class="ui-g-4">
-                <label for="username">Username</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="username" [(ngModel)]="user.username"/>
-            </div>
-        </div>
-        
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="password">Password</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="password" [(ngModel)]="user.password" />
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="color">Role</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="role" [(ngModel)]="user.role" />
-            </div>
-        </div>
+<p-dialog header="User Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="false"
+  [width]="300">
+  <div class="ui-g ui-fluid" *ngIf="user">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="firstName">First Name</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="firstName" [(ngModel)]="user.firstName" />
+      </div>
     </div>
-    <p-footer>
-        <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"></button>
-            <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
-        </div>
-    </p-footer>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="lastName">Last Name</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="lastName" [(ngModel)]="user.lastName" />
+      </div>
+    </div>
+    <div class="ui-g-12" *ngIf="newUser">
+      <div class="ui-g-4">
+        <label for="username">Username</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="username" [(ngModel)]="user.username" />
+      </div>
+    </div>
+
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="password">Password</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="password" [(ngModel)]="user.password" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="color">Role</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="role" [(ngModel)]="user.role" />
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"></button>
+      <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
+    </div>
+  </p-footer>
 </p-dialog>

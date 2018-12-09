@@ -1,0 +1,37 @@
+<div class="movie" *ngIf="movie">
+  <div class="movie__image"><img src="{{movie.Poster}}" /></div>
+  <div class=" movie__details">
+    <h2 class="movie__title">{{movie.Title}}</h2>
+    <div class="movie__details_container">
+      <p class="movie__year">{{movie.Year}}</p>
+      <p class="movie__rating">{{movie.imdbRating}} &#10022;</p>
+    </div>
+    <div class="movie__details_container">
+      Genre: <p>{{movie.Genre}}</p>
+    </div>
+
+    <div class="movie__details_container">
+      Cast: <p>{{movie.Actors}}</p>
+    </div>
+
+    <div class="movie__details_container">
+      Written by: <p>{{movie.Writer}}</p>
+    </div>
+    <p class="movie__description">
+      {{movie.Plot}}
+    </p>
+  </div>
+</div>
+
+<hr />
+<div *ngIf="movie && user.role==='admin'">
+  <button type="button" class="btn btn-primary" (click)="addMovie()" style="width:40%;float:left">Add
+    This Movie</button>
+  <button type="button" class="btn btn-primary" (click)="removeMovie()" style="width:40%;float:right">Remove
+    This Movie</button>
+</div>
+<!-- 
+<div *ngIf="movie && user.role==='vendor'">
+  <button type="button" class="btn btn-primary" (click)="addShow()" style="width:40%;float:left">
+    Add show for this Movie</button>
+</div> -->
