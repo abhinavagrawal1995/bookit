@@ -8,4 +8,4 @@ https://travis-ci.com/abhinavagrawal1995/bookit.svg?branch=master)](https://trav
 
 Website- [http://abhinavagrawal.in/bookit/](http://abhinavagrawal.in/bookit/)
 Server Code- [https://github.com/abhinavagrawal1995/bookit-server](https://github.com/abhinavagrawal1995/bookit-server)
-Server URL - [https://cs5200-bookit-server.herokuapp.com/reset](https://cs5200-bookit-server.herokuapp.com/reset)
+Server URL - [https://cs5200-bookit-server.herokuapp.com](https://cs5200-bookit-server.herokuapp.com)
